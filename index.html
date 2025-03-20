@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eades Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 50px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            margin-bottom: 30px;
+            animation: glow 1.5s infinite alternate;
+            text-transform: uppercase;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
+            100% { text-shadow: 0 0 15px #fff, 0 0 30px #ff00ff, 0 0 45px #ff00ff; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            text-align: left;
+            margin: 12px 0 5px;
+            color: #555;
+            font-size: 14px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input:focus, textarea:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
+        }
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        button {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea, #5648a2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #5b6ee1, #4a3e9b);
+            transform: scale(1.05);
+        }
+
+        .footer {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="team-name">
+        Infinity ♾
+    </div>
+
+    <div class="container">
+        <h2>Eades Submission</h2>
+        <form id="eadesForm">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" placeholder="Enter full name" required>
+
+            <label for="problem">Problem:</label>
+            <input type="text" id="problem" placeholder="Describe the problem" required>
+
+            <label for="solution">Solution:</label>
+            <textarea id="solution" rows="3" placeholder="Describe the solution" required></textarea>
+
+            <label for="argument">Argument:</label>
+            <textarea id="argument" rows="3" placeholder="Provide an argument" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        Anis Omar Annad
+    </div>
+
+    <script>
+        document.getElementById("eadesForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let formData = {
+                fullname: document.getElementById("fullname").value,
+                problem: document.getElementById("problem").value,
+                solution: document.getElementById("solution").value,
+                argument: document.getElementById("argument").value
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycbwHAaBKTOtYm9LCguJP4kG-6q9RkIysS-8-35apE8YzCa14yC4P76SPZ2ZGxHBmPH5_/exec", {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            }).then(() => alert("Form submitted successfully!"))
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+</body>
+</html>
